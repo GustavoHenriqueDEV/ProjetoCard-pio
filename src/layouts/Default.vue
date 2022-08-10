@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <v-app-bar color="orange lighten-2" absolute>
+    <v-app-bar class="pl-16" color="orange lighten-1" absolute>
       <v-spacer></v-spacer>
       <v-btn
-        rounded
+        large
         class="ml-1"
         v-for="item of items2"
         :key="item.title"
@@ -26,7 +26,7 @@
       ></v-autocomplete>
 
       <v-btn
-        rounded
+        large
         class="ml-1"
         v-for="item of items"
         :key="item.title"

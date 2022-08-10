@@ -1,6 +1,6 @@
 <template>
-  <div class="d-flex fill-height">
-    <v-row class="d-flex fill-height">
+  <div class="pa-0 fill-height">
+    <v-row class="pa-0 d-flex fill-height">
       <v-col
         class="d-flex justify-content-center alighn-items-center brown"
         sm="7"

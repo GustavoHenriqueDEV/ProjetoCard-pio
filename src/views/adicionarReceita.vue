@@ -1,12 +1,13 @@
 <template>
-  <div class="brown lighten-1 fill-height">
-    <v-container>
-      <v-container class="mt-10" text-center>
-        <v-row class="elevation-3 mx-auto, orange lighten-4 rounded-xl">
+  <div class="grey lighten-4">
+    <v-container class="">
+      <v-container class="mt-12" text-center>
+        <v-row class="pa-0 elevation-3 mx-auto, rounded-xl">
           <v-col cols="">
             <h1 class="orange--text h1">Formulário para envio de receita</h1>
             <v-form>
               <v-text-field
+                background-color="grey lighten-2"
                 name="Novareceita"
                 label="Nome da Receita"
                 v-model="novaReceita"
@@ -21,6 +22,7 @@
 
             <template>
               <v-text-field
+                background-color="grey lighten-2"
                 solo
                 prepend-inner-icon="mdi-camera"
                 label="Adicionar link da imagem "
@@ -35,6 +37,7 @@
               </h2>
             </v-div>
             <v-textarea
+              background-color="grey lighten-2"
               name="ingredientes"
               solo
               color="black"
@@ -43,54 +46,7 @@
               label="Escreva cada ingrediente por linha.Exemplo: 4x ovos "
             ></v-textarea>
             <h2 class="orange--text">Escolhe as tags da sua receita</h2>
-             <p class="blue--text">{{ selected }}</p>
-             <div class="justify-space-between d-flex">
-
-                <v-checkbox
-                  v-model="selected"
-                  label="Maa"
-                  value="Jon"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="selected"
-                  label="Mssa"
-                  value="Joh"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="selected"
-                  label="assa"
-                  value="ohn"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="selected"
-                  label="Mass"
-                  value="hn"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="selected"
-                  label="Massa"
-                  value="Josan"
-                ></v-checkbox>
-
-
-
-                <v-checkbox
-                  v-model="selected"
-                  label="Massa"
-                  value="Johnc"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="selected"
-                  label="Fria"
-                  value="Fria"
-                ></v-checkbox>
-                 <v-checkbox
-                  v-model="selected"
-                  label="Quente"
-                  value="Quente"
-                ></v-checkbox>
-             </div>
-              
+            <p class="blue--text">{{ selected }}</p>
           </v-col>
 
           <v-divider vertical></v-divider>
@@ -99,8 +55,9 @@
             <v-div class="orange--text"
               ><h2 class="h2">Tempo de preparo</h2></v-div
             >
-            <v-row>
+            <v-row class="pa-0">
               <v-text-field
+                background-color="grey lighten-2"
                 name="hora"
                 v-model="hora"
                 prepend-inner-icon="mdi-timer"
@@ -112,6 +69,7 @@
               ></v-text-field>
 
               <v-text-field
+                background-color="grey lighten-2"
                 name="minuto"
                 v-model="minuto"
                 prepend-inner-icon="mdi-timer"
@@ -130,6 +88,7 @@
                 Modo de preparo
               </h2>
               <v-textarea
+                background-color="grey lighten-2"
                 name="passos"
                 v-model="modoPreparo"
                 class="mt-3"
@@ -168,7 +127,7 @@ export default {
   props: ["receita"],
   data() {
     return {
-      selected:[],
+      selected: [],
       uid: "",
       novaReceita: "",
       imgChamada: "",
@@ -200,8 +159,7 @@ export default {
         minuto: this.minuto,
         modoPreparo: this.modoPreparo,
         comentarios: [],
-        selected: this.selected
-
+        selected: this.selected,
       });
     },
     async atualizarReceita() {
@@ -213,9 +171,7 @@ export default {
         minuto: this.minuto,
         modoPreparo: this.modoPreparo,
       });
-
     },
-    
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="brown lighten-1 fill-height">
+  <div class="pr-16 grey lighten-2 fill-height">
     <v-container class="pa-4">
       <v-row class="mt-4" align="center" justify="center">
         <template v-for="(receita, i) in receitas">
@@ -29,7 +29,7 @@
 
             <v-hover v-slot="{ hover }">
               <v-card
-                class="rounded-xl orange lighten-5"
+                class="rounded-xl"
                 @click="irDescReceita(receita)"
                 :elevation="hover ? 12 : 2"
                 :class="{ 'on-hover': hover }"

@@ -1,116 +1,23 @@
 <template>
-  <div class="brown lighten-1 fill-height">
-    <v-container class="pa-4">
-      <div class="btn rounded-xl white pa-1  d-flex justify-space-between">
-      <v-checkbox 
-                  :ripple="false"
-                  class="hide-details"
-                  hide-details
-                  v-model="selected"
-                  label="Maa"
-                  value="Jon"
-                ></v-checkbox>
-                <v-checkbox
-                  :ripple="false"
+  <div class="pt-3 grey lighten-4 fill-height">
+    <carrousel />
 
-                  v-model="selected"
-                  label="Mssa"
-                  value="Joh"
-                ></v-checkbox>
-                <v-checkbox
-                  :ripple="false"
+    <div class="destaque fill-height pt-6">MAIS DELÍCIAS</div>
 
-                  v-model="selected"
-                  label="assa"
-                  value="ohn"
-                ></v-checkbox>
-                <v-checkbox
-                  :ripple="false"
-
-                  v-model="selected"
-                  label="Mass"
-                  value="hn"
-                ></v-checkbox>
-                <v-checkbox
-                  :ripple="false"
-
-                  v-model="selected"
-                  label="Massa"
-                  value="Josan"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="selected"
-                  label="Massa"
-                  value="Johnc"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="selected"
-                  label="Fria"
-                  value="Fria"
-                ></v-checkbox>
-                 <v-checkbox
-                  v-model="selected"
-                  label="Quente"
-                  value="Quente"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="selected"
-                  label="Massa"
-                  value="Johnc"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="selected"
-                  label="Fria"
-                  value="Fria"
-                ></v-checkbox>
-                 <v-checkbox
-                  v-model="selected"
-                  label="Quente"
-                  value="Quente"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="selected"
-                  label="Massa"
-                  value="Johnc"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="selected"
-                  label="Fria"
-                  value="Fria"
-                ></v-checkbox>
-                 <v-checkbox
-                  v-model="selected"
-                  label="Quente"
-                  value="Quente"
-                ></v-checkbox>
-
-
-
-
-      </div>
-      <v-row class="mt-4" align="center" justify="center">
+    <container>
+      <v-row class="mt-10 destaqueRow pl-16" align="center" justify="center">
         <template v-for="(receita, i) in receitas">
           <!-- eslint-disable-next-line -->
-          <v-col :key="i" cols="12" md="4">
+          <v-col :key="i" cols="12" md="2">
             <!-- eslint-disable-next-line -->
-            <v-btn dark> <v-icon color="red">mdi-heart</v-icon></v-btn>
-
-            <v-btn class="ml-2" @click="comentarReceita(receita)">
-              <v-icon>mdi-comment</v-icon></v-btn
-            >
 
             <v-hover v-slot="{ hover }">
               <v-card
-                class="rounded-xl orange lighten-5"
+                class=""
                 @click="irDescReceita(receita)"
-                :elevation="hover ? 12 : 2"
+                :elevation="hover ? 20 : 2"
                 :class="{ 'on-hover': hover }"
               >
-                <h2 class="h2">
-                  <p class="mt-4 subheading text-left black--text text-center">
-                    {{ receita.novaReceita }}
-                  </p>
-                </h2>
                 <v-img :src="receita.imgChamada" height="225px">
                   <v-card-title class="text-h6 white--text">
                     <v-row
@@ -121,23 +28,42 @@
                     </v-row>
                   </v-card-title>
                 </v-img>
+                <div class="">
+                  <h3 class="h3">
+                    <p
+                      class="mt-4 subheading text-left black--text text-center"
+                    >
+                      {{ receita.novaReceita }}
+                    </p>
+                  </h3>
+                  <div class="nLikes text-center">
+                    <v-icon class="mb-1 mr-1" color="red">mdi-heart</v-icon
+                    >12312
+                  </div>
+                </div>
               </v-card>
             </v-hover>
           </v-col>
         </template>
       </v-row>
-    </v-container>
+    </container>
   </div>
 </template>
 
 <script>
+import carrousel from "@/components/carrousel";
 import * as fb from "@/plugins/firebase";
 import router from "../router";
 
 export default {
+  components: { carrousel },
   data() {
     return {
+      selected: [],
       receitas: [],
+      nome: "",
+      comentarioTexto: "",
+      comentarios: [],
     };
   },
 
@@ -156,6 +82,7 @@ export default {
           novaReceita: doc.data().novaReceita,
           imgChamada: doc.data().imgChamada,
           modoPreparo: doc.data().modoPreparo,
+          comentarios: doc.data().comentarista,
         });
       }
       console.log(this.receitas);
@@ -171,13 +98,42 @@ export default {
 </script>
 
 <style>
+.nLikes {
+  color: #b8b8b8;
+}
 
-
-.btn{}
-.heart {
+.send {
+  font-size: 14px;
+}
+.h3 {
+  font-weight: normal;
+  color: #a00f0f;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+.app2 {
+  width: 100%;
+  background-color: white;
+  display: flex;
+}
+.destaque {
+  text-transform: uppercase;
+  font-family: "sans-serif";
+  font-size: 20px;
+  margin: 0px;
+  padding: 0px;
+  height: 80px;
+  margin-top: 35px;
+  text-align: center;
+  justify-content: center;
+  background-color: rgb(255, 153, 0);
 }
 
 .backgroud {
   background-color: orange;
+}
+.destaqueRow {
+  padding-right: 80px;
 }
 </style>

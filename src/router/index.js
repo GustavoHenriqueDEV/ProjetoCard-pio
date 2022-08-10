@@ -69,7 +69,6 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "perfil" */ "../views/comentario.vue"),
   },
-
 ];
 
 const router = new VueRouter({

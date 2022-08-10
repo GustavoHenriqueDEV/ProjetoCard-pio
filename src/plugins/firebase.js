@@ -3,12 +3,14 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDfRE6VXv_BorI82Ths7BWLVgyuzorGoSA",
-  authDomain: "site-receita-149e7.firebaseapp.com",
-  projectId: "site-receita-149e7",
-  storageBucket: "site-receita-149e7.appspot.com",
-  messagingSenderId: "714215294284",
-  appId: "1:714215294284:web:591021635495b09d39fbe9",
+  apiKey: "AIzaSyACGIiv9-PNv-K7JGduRbPkiR6zeTey7ug",
+  authDomain: "projetocardapio-acb8f.firebaseapp.com",
+  databaseURL: "https://projetocardapio-acb8f-default-rtdb.firebaseio.com",
+  projectId: "projetocardapio-acb8f",
+  storageBucket: "projetocardapio-acb8f.appspot.com",
+  messagingSenderId: "722448702075",
+  appId: "1:722448702075:web:d90dc76be2577827eb20de",
+  measurementId: "G-KEB3KBK7PS",
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -18,6 +20,5 @@ const auth = firebase.auth();
 
 const profileCollection = db.collection("profile");
 const tasksCollection = db.collection("tasks");
-
 
 export { db, auth, profileCollection, tasksCollection };
