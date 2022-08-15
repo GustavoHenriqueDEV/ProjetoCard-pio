@@ -29,6 +29,26 @@
                   </v-card-title>
                 </v-img>
                 <div class="">
+                  <v-expand-transition>
+                    <div
+                      v-if="hover"
+                      class="
+                        d-flex
+                        transition-fast-in-fast-out
+                        orange
+                        darken-2
+                        v-card--reveal
+                        text-h4
+                        white--text
+                      "
+                      style="height: 35px"
+                    >
+                      <div class="preco">
+                        R$:
+                        {{ receita.preco }}
+                      </div>
+                    </div>
+                  </v-expand-transition>
                   <h3 class="h3">
                     <p
                       class="mt-4 subheading text-left black--text text-center"
@@ -81,7 +101,7 @@ export default {
           ingredientes: doc.data().ingredientes,
           novaReceita: doc.data().novaReceita,
           imgChamada: doc.data().imgChamada,
-          modoPreparo: doc.data().modoPreparo,
+          preco: doc.data().preco,
           comentarios: doc.data().comentarista,
         });
       }
@@ -135,5 +155,8 @@ export default {
 }
 .destaqueRow {
   padding-right: 80px;
+}
+.preco {
+  font-size: 25px;
 }
 </style>

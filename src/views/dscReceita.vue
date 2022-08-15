@@ -1,80 +1,52 @@
 <template>
-  <container class="grey lighten-4">
+  <container class="orange lighten-5">
     <v-container text-center class="pa-10 mb-16">
       <v-row class="pa-0 elevation-3 mx-auto, white">
+        <v-col class="rounded-xl pt-16">
+          <div>
+            <h1 class="h2 mb-2 orange--text">
+              <v-icon>mdi-noodles</v-icon>Ingredientes:
+            </h1>
+          </div>
+
+          <div class="receitaBox">
+            <p class="receitaContent">{{ receita.ingredientes }}</p>
+          </div>
+          <v-divider class="mt-3"></v-divider>
+
+          <div class="orange--text"><h1 class="h2">Tempo de preparo:</h1></div>
+          <v-row class="pa-0 rounded-xl">
+            <v-col class="rounded-xl">
+              <div class="timeBox">
+                <p class="timeContent">{{ receita.hora }} Hora</p>
+              </div>
+            </v-col>
+            <h1 class="h1 mt-3">:</h1>
+            <v-col class="rounded-xl">
+              <div class="timeBox">
+                <p class="timeContent">{{ receita.minuto }} Minutos</p>
+              </div>
+            </v-col>
+          </v-row>
+
+          <v-divider class="mt-3"></v-divider>
+
+          <div class="rounded-xl">
+            <h1 class="h2 orange--text">
+              <v-icon class="gray">mdi-food-takeout-box</v-icon>
+              Preço:
+            </h1>
+            <div class="precoBox">
+              <p class="precoContent">R${{ receita.preco }}</p>
+            </div>
+          </div>
+        </v-col>
         <v-col class="rounded-xl">
-          <div class="">
+          <div class="foodName">
             <h1 class="receitaName h1 orange--text">
               {{ receita.novaReceita }}
             </h1>
           </div>
-          <div>
-            <h2 class="h2 mb-2 orange--text">
-              <v-icon>mdi-noodles</v-icon>Ingredientes:
-            </h2>
-          </div>
-
-          <v-textarea
-            background-color="grey lighten-2"
-            :value="receita.ingredientes"
-            class="mt-3"
-            solo
-            color="black"
-            auto-grow
-            name="igfirebaselack"
-          ></v-textarea>
-          <v-divider></v-divider>
-          <div class="orange--text"><h2 class="h2">Tempo de preparo:</h2></div>
-          <v-row class="pa-0 rounded-xl">
-            <v-col class="rounded-xl">
-              <v-text-field
-                background-color="grey lighten-2"
-                name="minuto"
-                :value="receita.hora"
-                prepend-inner-icon="mdi-timer"
-                rounded
-                solo
-                filled
-                class="mt-4 mr-2 ml-2"
-                label="Hora"
-              ></v-text-field>
-            </v-col>
-            <h1 class="h1 mt-8">:</h1>
-            <v-col class="rounded-xl">
-              <v-text-field
-                background-color="grey lighten-2"
-                name="minuto"
-                :value="receita.minuto"
-                prepend-inner-icon="mdi-timer"
-                rounded
-                solo
-                filled
-                class="mt-4 mr-2 ml-2"
-                label="Minuto"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-
-          <v-divider></v-divider>
-
-          <div class="rounded-xl">
-            <h2 class="h2 orange--text">
-              <v-icon class="gray">mdi-food-takeout-box</v-icon>
-              Modo de preparo:
-            </h2>
-
-            <v-textarea
-              background-color="grey lighten-2"
-              name="igfirebaselack"
-              :value="receita.modoPreparo"
-              class="mt-3"
-              solo
-              color="black"
-              auto-grow
-            ></v-textarea>
-          </div>
-        </v-col>
-        <v-col class="rounded-xl">
           <v-img
             class="image rounded-xl"
             height="500"
@@ -160,17 +132,18 @@ export default {
     async buscarReceitas() {
       const logtasks = await fb.tasksCollection.get();
       for (const doc of logtasks.docs) {
-        this.tasks.push({
+        this.receitas.push({
           id: doc.id,
           hora: doc.data().hora,
           minuto: doc.data().minuto,
           ingredientes: doc.data().ingredientes,
           novaReceita: doc.data().novaReceita,
-          modoPreparo: doc.data().modoPreparo,
           imgChamada: doc.data().imgChamada,
+          preco: doc.data().preco,
+          comentarios: doc.data().comentarista,
         });
       }
-      console.log(this.tasks);
+      console.log(this.receitas);
     },
     async getComentario() {
       await fb.db
@@ -205,9 +178,6 @@ export default {
       console.log(this.comentarios);
       this.getComentario();
     },
-    metodoTeste() {
-      console.log(this.comentarioTexto);
-    },
   },
 };
 </script>
@@ -230,6 +200,31 @@ export default {
   justify-content: center;
 }
 .image {
-  margin-top: 85px;
+  margin-top: 10px;
+}
+.receitaBox {
+  text-align: start;
+  border-radius: 9px;
+  height: 140px;
+  background-color: #e0e0e0;
+}
+.receitaContent {
+  font-size: 20px;
+  padding: 10px;
+}
+.timeBox {
+  font-size: 20px;
+  height: 50px;
+  border-radius: 20px;
+  background-color: #e0e0e0;
+}
+.timeContent {
+  padding-top: 10px;
+}
+.precoBox {
+  border-radius: 20px;
+  font-size: 20px;
+  color: orangered;
+  background-color: #e0e0e0;
 }
 </style>

@@ -45,8 +45,6 @@
               v-model="ingredientes"
               label="Escreva cada ingrediente por linha.Exemplo: 4x ovos "
             ></v-textarea>
-            <h2 class="orange--text">Escolhe as tags da sua receita</h2>
-            <p class="blue--text">{{ selected }}</p>
           </v-col>
 
           <v-divider vertical></v-divider>
@@ -85,17 +83,19 @@
             <v-div>
               <h2 class="h2 orange--text">
                 <v-icon class="gray">mdi-food-takeout-box</v-icon>
-                Modo de preparo
+                Preço a se pagar:
               </h2>
               <v-textarea
+                width="40px"
+                height="50px"
                 background-color="grey lighten-2"
                 name="passos"
-                v-model="modoPreparo"
+                v-model="preco"
                 class="mt-3"
                 solo
                 color="black"
                 auto-grow
-                label="Descreva os passos por linha.  "
+                label="$$"
               ></v-textarea>
             </v-div>
             <v-div v-if="this.receita != undefined">
@@ -127,7 +127,6 @@ export default {
   props: ["receita"],
   data() {
     return {
-      selected: [],
       uid: "",
       novaReceita: "",
       imgChamada: "",
@@ -135,6 +134,7 @@ export default {
       hora: "",
       minuto: "",
       passos: "",
+      preco: "",
     };
   },
   created() {
@@ -144,7 +144,7 @@ export default {
         (this.ingredientes = this.receita.ingredientes),
         (this.hora = this.receita.hora),
         (this.minuto = this.receita.minuto),
-        (this.modoPreparo = this.receita.modoPreparo);
+        (this.preco = this.receita.preco);
     }
   },
   methods: {
@@ -157,9 +157,8 @@ export default {
         ingredientes: this.ingredientes,
         hora: this.hora,
         minuto: this.minuto,
-        modoPreparo: this.modoPreparo,
+        preco: this.preco,
         comentarios: [],
-        selected: this.selected,
       });
     },
     async atualizarReceita() {
@@ -169,7 +168,7 @@ export default {
         ingredientes: this.ingredientes,
         hora: this.hora,
         minuto: this.minuto,
-        modoPreparo: this.modoPreparo,
+        preco: this.preco,
       });
     },
   },
