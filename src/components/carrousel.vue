@@ -1,14 +1,10 @@
 <template>
   <v-row class="row d-flex">
     <v-col cols="8" md="9">
-      <v-card
-        elevation="10"
-        width="1430"
-        class="mx-auto mt-10"
-        @click="irDescReceita(receita)"
-      >
+      <v-card elevation="10" width="1430" class="mx-auto mt-10">
         <v-carousel hide-on-leave hide-delimiter-background class="carousel1">
           <v-carousel-item
+            @click="irDescReceita(receita)"
             v-for="(receita, i) in receitas"
             :key="i"
             :src="receita.imgChamada"
